@@ -22,7 +22,7 @@ def load_almath():
 if sys.platform.startswith("linux"):
     try:
         load_almath()
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
 
 from almathswig import *

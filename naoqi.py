@@ -79,7 +79,7 @@ def autoBind(myClass, bindIfnoDocumented):
                     else:
                         myClass.functionName(thing, myClass.getName(), "")
 
-                    for param in function.func_code.co_varnames:
+                    for param in function.__code__.co_varnames:
                         if (param != "self"):
                             myClass.addParam(param)
                         myClass._bindWithParam(myClass.getName(),thing, _getMethodParamCount(function)-1)
@@ -228,7 +228,7 @@ class ALBehavior(inaoqi.behavior, NaoQiModule):
         if callable(function) and type(function) == type(self.__init__):
           if (methName[0] != "_"):  # private method
             self.functionName(methName, behName, "")
-            for param in function.func_code.co_varnames:
+            for param in function.__code__.co_varnames:
               if (param != "self"):
                 self.addParam(param)
             self._bindWithParam(behName, methName, _getMethodParamCount(function)-1)
@@ -265,16 +265,16 @@ class ALBehavior(inaoqi.behavior, NaoQiModule):
     try:
       if(functionName in dir(self)):
         func = getattr(self, functionName)
-        if(func.im_func.func_code.co_argcount == 2):
+        if(func.__func__.__code__.co_argcount == 2):
           func(functionArg)
         else:
           func()
       return True
-    except BaseException, err:
+    except BaseException as err:
       if("onError" in dir(self)):
         try:
           self.onError(self.getName() + ':' + str(err))
-        except BaseException, err2:
+        except BaseException as err2:
           self.logger.error(traceback.format_exc())
           self._reportError(self.behaviorId, self.__class__.__name__, traceback.format_exc())
       else:
@@ -324,7 +324,7 @@ class postType(MethodMissingMixin):
           try:
                   p =  self.proxy()
                   result = p.pythonPCall(list)
-          except RuntimeError,e:
+          except RuntimeError as e:
                 raise e
 
           return result
@@ -367,7 +367,7 @@ class ALProxy(inaoqi.proxy,MethodMissingMixin):
           result = 0
           try:
                 result = self.pythonCall(list)
-          except RuntimeError,e:
+          except RuntimeError as e:
                 raise e
                 #print e.args[0]
 
@@ -389,11 +389,11 @@ class ALProxy(inaoqi.proxy,MethodMissingMixin):
         try:
             ALFrameManager = ALProxy("ALFrameManager")
         except:
-            print "No proxy to ALFrameManager"
+            print("No proxy to ALFrameManager")
         try:
             ALMotion = ALProxy("ALMotion")
         except:
-            print "No proxy to ALMotion"
+            print("No proxy to ALMotion")
         try:
             ALLeds = ALProxy("ALLeds")
         except:
@@ -401,7 +401,7 @@ class ALProxy(inaoqi.proxy,MethodMissingMixin):
         try:
             ALLogger = ALProxy("ALLogger")
         except:
-            print "No proxy to ALLogger"
+            print("No proxy to ALLogger")
         try:
             ALSensors = ALProxy("ALSensors")
         except:

@@ -89,9 +89,8 @@ class Double(_Signature):
     """ 64 bits Floating Point Type """
     signature = 'd'
 
-class String(_Signature):
+class String(_Signature, metaclass=_MetaSignature):
     """ String Type """
-    __metaclass__ = _MetaSignature
     signature = "s"
 
 class List(_Signature):
@@ -109,30 +108,26 @@ class Struct(_Signature):
     def __init__(self, fields):
         self.signature = "(%s)" % fields.join("")
 
-class Object(_Signature):
+class Object(_Signature, metaclass=_MetaSignature):
     """ Object Type """
-    __metaclass__ = _MetaSignature
     signature = 'o'
 
-class Dynamic(_Signature):
+class Dynamic(_Signature, metaclass=_MetaSignature):
     """ Any Type """
-    __metaclass__ = _MetaSignature
     signature = 'm'
 
-class Buffer(_Signature):
+class Buffer(_Signature, metaclass=_MetaSignature):
     """ Buffer Type """
-    __metaclass__ = _MetaSignature
     signature = 'r'
 
 #yes this look similar to Dynamic but it's not.
 #eg: qi.bind(Void, (Dynamic, Dynamic))  this mean a tuple of two dynamic.
 #eg: qi.bind(Void, AnyArguments)        this is not a tuple. (m not in tuple, mean anythings)
 #eg: qi.bind(Void, Dynamic)             this is a function with one argument
-class AnyArguments(_Signature):
+class AnyArguments(_Signature, metaclass=_MetaSignature):
     """ Any Arguments Types. A function or a signal taking AnyArguments
         will accept all kind of arguments. AnyArguments is a list of AnyValue
     """
-    __metaclass__ = _MetaSignature
     signature = 'm'
 
 

@@ -107,7 +107,7 @@ class SwigPyIterator(_object):
         """copy(SwigPyIterator self) -> SwigPyIterator"""
         return _almathswig.SwigPyIterator_copy(self)
 
-    def next(self):
+    def __next__(self):
         """next(SwigPyIterator self) -> PyObject *"""
         return _almathswig.SwigPyIterator_next(self)
 
@@ -165,7 +165,7 @@ class vectorFloat(_object):
         return _almathswig.vectorFloat_iterator(self)
 
     def __iter__(self): return self.iterator()
-    def __nonzero__(self):
+    def __bool__(self):
         """__nonzero__(vectorFloat self) -> bool"""
         return _almathswig.vectorFloat___nonzero__(self)
 
@@ -338,7 +338,7 @@ class vectorPosition2D(_object):
         return _almathswig.vectorPosition2D_iterator(self)
 
     def __iter__(self): return self.iterator()
-    def __nonzero__(self):
+    def __bool__(self):
         """__nonzero__(vectorPosition2D self) -> bool"""
         return _almathswig.vectorPosition2D___nonzero__(self)
 
@@ -512,7 +512,7 @@ class vectorPose2D(_object):
         return _almathswig.vectorPose2D_iterator(self)
 
     def __iter__(self): return self.iterator()
-    def __nonzero__(self):
+    def __bool__(self):
         """__nonzero__(vectorPose2D self) -> bool"""
         return _almathswig.vectorPose2D___nonzero__(self)
 
@@ -686,7 +686,7 @@ class vectorPosition6D(_object):
         return _almathswig.vectorPosition6D_iterator(self)
 
     def __iter__(self): return self.iterator()
-    def __nonzero__(self):
+    def __bool__(self):
         """__nonzero__(vectorPosition6D self) -> bool"""
         return _almathswig.vectorPosition6D___nonzero__(self)
 

@@ -82,7 +82,7 @@ class SwigPyIterator(_object):
     def distance(self, *args): return _inaoqi.SwigPyIterator_distance(self, *args)
     def equal(self, *args): return _inaoqi.SwigPyIterator_equal(self, *args)
     def copy(self): return _inaoqi.SwigPyIterator_copy(self)
-    def next(self): return _inaoqi.SwigPyIterator_next(self)
+    def __next__(self): return _inaoqi.SwigPyIterator_next(self)
     def __next__(self): return _inaoqi.SwigPyIterator___next__(self)
     def previous(self): return _inaoqi.SwigPyIterator_previous(self)
     def advance(self, *args): return _inaoqi.SwigPyIterator_advance(self, *args)
@@ -104,7 +104,7 @@ class StringVector(_object):
     __repr__ = _swig_repr
     def iterator(self): return _inaoqi.StringVector_iterator(self)
     def __iter__(self): return self.iterator()
-    def __nonzero__(self): return _inaoqi.StringVector___nonzero__(self)
+    def __bool__(self): return _inaoqi.StringVector___nonzero__(self)
     def __bool__(self): return _inaoqi.StringVector___bool__(self)
     def __len__(self): return _inaoqi.StringVector___len__(self)
     def pop(self): return _inaoqi.StringVector_pop(self)
